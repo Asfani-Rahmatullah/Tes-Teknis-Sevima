@@ -1,5 +1,5 @@
 <?php
-    require 'userPermission.inc'
+    require 'userPermission.inc';
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,6 +27,9 @@
             </li>
             <li class="nav-item">
             <a class="nav-link active" href="#">Profil</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="buat postingan.php">Buat Postingan</a>
             </li>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

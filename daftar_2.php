@@ -1,35 +1,30 @@
 <?php
+  // Create database connection
+  $db = mysqli_connect("localhost", "root", "", "instaapp");
 
-	if(isset($_POST['masuk'])){
-		function checkPassword($email, $password){
-			$dbc = new PDO('mysql:host=localhost;dbname=instaapp','root','');	
-			$query = $dbc->prepare("SELECT * FROM pengguna WHERE email = :email AND password = SHA2(:password, 0)");
-			$query->bindValue(':email', $_POST['email']);
-			$query->bindValue(':password', $_POST['password']);
-			$query->execute();
-			return $query->rowCount() > 0;
-		}
-		if (checkPassword($_POST['email'], $_POST['password'])){
-            $dbc = new PDO('mysql:host=localhost;dbname=instaapp','root','');	
-			$query = $dbc->prepare("SELECT * FROM pengguna WHERE email = :email AND password = SHA2(:password, 0)");
-			$query->bindValue(':email', $_POST['email']);
-			$query->bindValue(':password', $_POST['password']);
-			$query->execute();
-            foreach ($query as $row)    
-                {
-                    $id=$row['id_user'];
-                }
-			session_start();
-            $_SESSION['id'] = intval($id);
-			$_SESSION['user'] = true;
-			header("Location: http://{$_SERVER['HTTP_HOST']}/Tes-Teknis-SEVIMA/user/index.php");
-			exit();
-		}
-        else {
-            header("Location: http://{$_SERVER['HTTP_HOST']}/Tes-Teknis-SEVIMA/login.php?login-gagal");
-        }
-	}
-	
+  // Initialize message variable
+  $msg = "";
+
+  // If upload button is clicked ...
+  if (isset($_POST['upload'])) {
+  	// Get image name
+  	$image = $_FILES['image']['name'];
+  	// Get text
+  	$image_text = mysqli_real_escape_string($db, $_POST['image_text']);
+
+  	// image file directory
+  	$target = "images/".basename($image);
+
+  	$sql = "INSERT INTO pengguna (foto) VALUES ('$image')";
+  	// execute query
+  	mysqli_query($db, $sql);
+
+  	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+  		$msg = "Foto telah diupload";
+  	}else{
+  		$msg = "Foto gagal diupload";
+  	}
+  };
 ?>
 <!doctype html>
 <html lang="en">
@@ -41,9 +36,21 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-    <title>Masuk | InstaApp</title>
+    <script type='text/javascript'>
+        function preview_image(event) 
+        {
+        var reader = new FileReader();
+        reader.onload = function()
+        {
+        var output = document.getElementById('output_image');
+        output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+    <title>Selamat Datang | InstaApp</title>
   </head>
-  <body>
+<body>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning sticky-md-top">
     <div class="container">
         <a class="navbar-brand fs-3" href="#">InstaApp</a>
@@ -75,41 +82,29 @@
         </div>
     </div>
     </nav>
-<?php
-echo '<form action="login.php"  method="POST">';
-echo ' <div class="w-75 mx-auto my-auto">
-<h1 class="text-center py-3">Selamat Datang !</h1>
-<div class="w-50 h-50 mx-auto rounded-3 border border-primary">
-    <h2 class="text-center py-2">Masuk</h2>
-    <div class="mb-3 row mx-auto w-75">
-        <label for="email" class="col-sm-4 col-form-label">Username/Email</label>
-        <div class="col-sm-7">
-        <input type="text" class="form-control" id="email" name="email">
+    <form action="daftar_2.php" method="post" enctype="multipart/form-data">
+        <div class="w-75 mx-auto my-auto">
+            <h1 class="text-center py-3">Selamat Datang !</h1>
+            <div class="w-50 h-50 mx-auto rounded-3 border border-primary">
+                <h2 class="text-center py-2">Upload Foto Profil</h2>
+            <div class="mb-3 row mx-auto w-75">
+                <label for="staticEmail" class="col-sm-5 col-form-label">Pilih Foto</label>
+                <img class="img-thumbnail w-50" id="output_image"/>
+                <div class="col-sm-7">
+                <input type="file" accept="image/*" onchange="preview_image(event)" name="image">
+                </div>
+                <label for="staticEmail" class="alert alert-danger" role="alert">'.$username.'</label>
+            </div>
+            <div class="d-grid gap-2">
+                <input class="btn btn-primary w-50 mx-auto mb-3" type="submit" name="Daftar" value="Daftar">
+            </div>
         </div>
+    </form>
+    <div>
+    <span>Kebijakan Privasi</span>
     </div>
-    <div class="mb-3 row mx-auto w-75">
-        <label for="password" class="col-sm-4 col-form-label">Password</label>
-        <div class="col-sm-7">
-        <input type="password" class="form-control" id="password" name="password">
-        </div>
-    </div>
-    <div class="d-grid gap-2">
-        <input type="submit" name="masuk" value="Masuk" class="btn btn-primary w-50 mx-auto">
-        <a href="daftar.php" class="btn btn-success w-50 mx-auto mb-3">Belum Punya Akun ?</a>
-    </div>
-';
-if (isset($_GET['login-gagal'])) {
-    echo '<div class="alert alert-danger" role="alert">
-            Login Gagal, Silahkan Masukkan data dengan tepat !!
-        </div>';
-}
-echo '
-</div>
-</div>';
-echo '';
 
-?>
-<!-- Optional JavaScript; choose one of the two! -->
+    <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
@@ -119,5 +114,5 @@ echo '';
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     -->
-</body>
+  </body>
 </html>

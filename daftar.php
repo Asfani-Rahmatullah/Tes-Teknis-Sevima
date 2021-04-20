@@ -43,13 +43,12 @@
     </div>
     </nav>
     <?php
-        $errorUsername = $errorEmail = $errorFoto = $errorPw = $errorCpw = array();
-        $sysUsername = $sysEmail = $sysNomor = $sysFoto = $sysDes = $sysPw = $sysCpw = '';
+        $errorUsername = $errorEmail = $errorPw = $errorCpw = array();
+        $sysUsername = $sysEmail = $sysNomor = $sysPw = $sysCpw = '';
         
         $isianForm['Username'] = "";
         $isianForm['Email']="";
         $isianForm['Nomor']="";
-        $isianForm['Foto'] = "";
         $isianForm['Password'] = "";
         $isianForm['confirmPassword'] = "";
         
@@ -67,33 +66,30 @@
             // }
             
             validateUsname($errorUsername, $_POST, 'Username');
-            validateEmpty($errorFoto, $_POST, 'Foto');
             validateMail($errorEmail, $_POST,'Email');
             validatePw($errorPw, $_POST, 'Password');
             validateCpw($errorCpw, $_POST['Password'],  $_POST['confirmPassword'], 'confirmPassword');
-            if ($errorUsername || $errorDes || $errorFoto || $errorEmail || $errorPw || $errorCpw) {
+            if ($errorUsername || $errorEmail || $errorPw || $errorCpw) {
                 foreach ($errorUsername as $field => $sysUsername);
                 foreach ($errorEmail as $field => $sysEmail);
                 foreach ($errorPw as $field => $sysPw);
                 foreach ($errorCpw as $field => $sysCpw);
             }
-            if ($sysUsername || $sysDes || $sysEmail || $sysFoto || $sysPw || $sysCpw) {
-                formulir($sysUsername,$sysEmail,$sysFoto,$sysDes,$sysPw,$sysCpw,$isianForm);
+            if ($sysUsername || $sysEmail || $sysPw || $sysCpw) {
+                formulir($sysUsername,$sysEmail,$sysPw,$sysCpw,$isianForm);
                 }
             else {
                     $dbc = new PDO('mysql:host=localhost;dbname=instaapp','root','');
 
-                    $statement = $dbc->prepare(" INSERT INTO pengguna (username, email, nomor_handphone, jenis_kelamin, TTL, foto, password, deskripsi)
-                                                VALUES (:username, :email, :nomor_handphone, :jenis_kelamin, :ttl, :foto, SHA2(:password,0), :deskripsi)");
+                    $statement = $dbc->prepare(" INSERT INTO pengguna (username, email, nomor_handphone, jenis_kelamin, TTL, password)
+                                                VALUES (:username, :email, :nomor_handphone, :jenis_kelamin, :ttl, SHA2(:password,0))");
                 
                     $statement->bindValue(':username', $_POST['Username']);
                     $statement->bindValue(':email', $_POST['Email']);
                     $statement->bindValue(':nomor_handphone', $_POST['Nomor']);
                     $statement->bindValue(':password', $_POST['Password']);
                     $statement->bindValue(':jenis_kelamin', $_POST['Jenis_Kelamin']);
-                    $statement->bindValue(':foto', $_POST['Foto']);
                     $statement->bindValue(':ttl', $_POST['TTL']);
-                    $statement->bindValue(':deskripsi', $_POST['Deskripsi']);
                     $statement->execute();
                     echo '<div class="w-50 h-50 mx-auto rounded-3 border border-primary">
                         <h2 class="text-center py-2">Keluar</h2>
@@ -104,8 +100,8 @@
             }
 
         }
-        else formulir('','','','','','',$isianForm);
-    function formulir($username, $email, $foto, $des, $pw, $cpw, $isianForm){
+        else formulir('','','','',$isianForm);
+    function formulir($username, $email, $pw, $cpw, $isianForm){
         echo '
         <form action="daftar.php" method="post">
             <div class="w-75 mx-auto my-auto">
@@ -147,14 +143,6 @@
                 <input type="date" class="form-control" id="TTL" name="TTL">
                 </div>
             </div>
-            <div class="mb-3 row mx-auto w-75">
-                <label for="staticEmail" class="col-sm-5 col-form-label">Foto Profil</label>
-                <div class="col-sm-7">
-                <input class="form-control" type="file" id="Foto" name="Foto" value="'.$isianForm['Foto'].'">
-                </div>';
-        echo '<label for="staticEmail" class="alert alert-light txt-danger" role="alert">'.$foto.'</label>';
-        echo '</div>
-        
         <div class="mb-3 row mx-auto w-75">
             <label for="inputPassword" class="col-sm-5 col-form-label">Password</label>
             <div class="col-sm-7">
@@ -168,13 +156,6 @@
             <input type="password" class="form-control" id="Password" name="confirmPassword" value="'.$isianForm['confirmPassword'].'">
             </div>
             <label for="staticEmail" class="alert alert-light txt-danger" role="alert">'.$cpw.'</label>
-        </div>
-        <div class="mb-3 row mx-auto w-75">
-            <label for="exampleFormControlTextarea1" class="form-label">Deskripsi diri</label>
-            <div class="col-sm">
-                <textarea class="form-control" id="Deskripsi" rows="3" name="Deskripsi"></textarea>
-            </div>
-            <label for="staticEmail" class="alert alert-light txt-danger" role="alert">'.$des.'</label>
         </div>
         <div class="mb-3 row mx-auto w-75">
             <div class="col-sm-1">
