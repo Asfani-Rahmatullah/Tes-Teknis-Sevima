@@ -94,8 +94,7 @@
                     echo '<div class="w-50 h-50 mx-auto rounded-3 border border-primary">
                         <h2 class="text-center py-2">Keluar</h2>
                         <div class="d-grid gap-2">
-                            <input type="submit" name="masuk" value="Masuk" class="btn btn-primary w-50 mx-auto">
-                            <a href="daftar.php" class="btn btn-success w-50 mx-auto mb-3">Masuk ke Akun yang sudah Ada ?</a>
+                            <a href="login.php" class="btn btn-success w-50 mx-auto mb-3">Masuk ke Akun yang sudah Ada ?</a>
                         </div>';
             }
 
