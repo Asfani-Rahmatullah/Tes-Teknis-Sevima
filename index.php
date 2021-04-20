@@ -42,7 +42,7 @@
         </div>
     </div>
     </nav>
-    <div class="w-75 mx-auto my-auto">
+    <div class="bg-light">
     <h1 class="text-center py-3">Selamat Datang !</h1>
     <div class="w-50 h-50 mx-auto rounded-3 border border-primary">
         <h2 class="text-center py-2">Masuk</h2>

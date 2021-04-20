@@ -64,7 +64,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav text-right">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Beranda</a>
             </li>
             <li class="nav-item">
             <a class="nav-link active" href="#">Profil</a>
@@ -101,7 +101,7 @@
                 <input class="form-control form-control-sm" type="file" accept="image/*" onchange="preview_image(event)" name="image">
                 </div>
                 <label for="staticEmail" class="col-sm-10 col-form-label">Tulis Caption</label>
-                <textarea class="form-control" id="Caption" name="Caption" rows="3"></textarea>
+                <textarea class="form-control" id="Caption" name="Caption" rows="5"></textarea>
             </div>
             <div class="d-grid gap-2">
                 <input class="btn btn-primary w-50 mx-auto mb-3" type="submit" name="Upload" value="Upload">
