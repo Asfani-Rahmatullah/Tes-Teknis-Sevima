@@ -1,3 +1,6 @@
+<?php
+    require 'userPermission.inc'
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -36,7 +39,7 @@
             </ul>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Keluar</a>
+            <a class="nav-link" href="logout.php">Keluar</a>
             </li>
         </ul>
         </div>

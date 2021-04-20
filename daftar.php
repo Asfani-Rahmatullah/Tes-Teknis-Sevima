@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav text-right">
             <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Masuk</a>
+            <a class="nav-link active" aria-current="page" href="login.php">Masuk</a>
             </li>
             <li class="nav-item">
             <a class="nav-link active" href="#">Daftar</a>

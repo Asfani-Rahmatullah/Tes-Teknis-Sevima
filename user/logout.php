@@ -1,3 +1,11 @@
+<?php
+    require 'userPermission.inc';
+    if(isset($_POST['keluar'])){
+		session_start();
+        unset($_SESSION['user']);
+        header("Location: http://{$_SERVER['HTTP_HOST']}/Tes-Teknis-SEVIMA/index.php");
+    }
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +16,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-    <title>Selamat Datang | InstaApp</title>
+    <title>Beranda | InstaApp</title>
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning sticky-md-top">
@@ -18,15 +26,12 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav text-right">
+        <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="login.php">Masuk</a>
+            <a class="nav-link active" aria-current="page" href="#">Beranda</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link active" href="#">Daftar</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Tentang</a>
+            <a class="nav-link active" href="#">Profil</a>
             </li>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,32 +43,27 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
             </li>
+            <li class="nav-item">
+            <a class="nav-link" href="logout.php">Keluar</a>
+            </li>
         </ul>
         </div>
     </div>
     </nav>
-    <div class="w-75 mx-auto my-auto">
-    <h1 class="text-center py-3">Selamat Datang !</h1>
+    <?php
+    echo ' <div class="w-75 mx-auto my-auto">
+    <form action="logout.php" method="POST">
     <div class="w-50 h-50 mx-auto rounded-3 border border-primary">
-        <h2 class="text-center py-2">Masuk</h2>
-        <div class="mb-3 row mx-auto w-75">
-            <label for="staticEmail" class="col-sm-4 col-form-label">Username/Email</label>
-            <div class="col-sm-7">
-            <input type="text" class="form-control" id="Email">
-            </div>
-        </div>
-        <div class="mb-3 row mx-auto w-75">
-            <label for="inputPassword" class="col-sm-4 col-form-label">Password</label>
-            <div class="col-sm-7">
-            <input type="password" class="form-control" id="Password">
-            </div>
-        </div>
+        <h2 class="text-center py-2">Keluar</h2>
+        <span>Apakah Anda Ingin Keluar ?</span>
         <div class="d-grid gap-2">
-            <button class="btn btn-primary w-50 mx-auto" type="button">Masuk</button>
-            <button class="btn btn-success w-50 mx-auto mb-3" type="button">Belum Punya Akun ?</button>
+            <input type="submit" name="keluar" value="Yakin" class="btn btn-primary w-50 mx-auto">
         </div>
-
-    </div>
+    </form>
+    ';
+    ?>
+    <div>
+    <span>Kebijakan Privasi</span>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
