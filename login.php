@@ -46,7 +46,7 @@
             <a class="nav-link active" aria-current="page" href="login.php">Masuk</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link active" href="#">Daftar</a>
+            <a class="nav-link active" href="daftar.php">Daftar</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#">Tentang</a>
@@ -85,7 +85,7 @@ echo ' <div class="w-75 mx-auto my-auto">
     </div>
     <div class="d-grid gap-2">
         <input type="submit" name="masuk" value="Masuk" class="btn btn-primary w-50 mx-auto">
-        <button class="btn btn-success w-50 mx-auto mb-3" type="button">Belum Punya Akun ?</button>
+        <a href="daftar.php" class="btn btn-success w-50 mx-auto mb-3">Belum Punya Akun ?</a>
     </div>
 ';
 if (isset($_GET['login-gagal'])) {

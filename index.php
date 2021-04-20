@@ -23,7 +23,7 @@
             <a class="nav-link active" aria-current="page" href="login.php">Masuk</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link active" href="#">Daftar</a>
+            <a class="nav-link active" href="daftar.php">Daftar</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#">Tentang</a>

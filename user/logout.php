@@ -55,10 +55,11 @@
     <form action="logout.php" method="POST">
     <div class="w-50 h-50 mx-auto rounded-3 border border-primary">
         <h2 class="text-center py-2">Keluar</h2>
-        <span>Apakah Anda Ingin Keluar ?</span>
         <div class="d-grid gap-2">
-            <input type="submit" name="keluar" value="Yakin" class="btn btn-primary w-50 mx-auto">
+        <label class="col-form-label text-center">Apakah Anda Ingin Keluar ?</label>
+            <input type="submit" name="keluar" value="Yakin" class="btn btn-primary w-50 mx-auto mb-3">
         </div>
+    </div>
     </form>
     ';
     ?>
