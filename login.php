@@ -46,7 +46,7 @@
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning sticky-md-top">
     <div class="container">
-        <a class="navbar-brand fs-3" href="#">InstaApp</a>
+        <a class="navbar-brand fs-3" href="index.php">InstaApp</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -82,7 +82,7 @@ echo ' <div class="w-75 mx-auto my-auto">
 <div class="w-50 h-50 mx-auto rounded-3 border border-primary">
     <h2 class="text-center py-2">Masuk</h2>
     <div class="mb-3 row mx-auto w-75">
-        <label for="email" class="col-sm-4 col-form-label">Username/Email</label>
+        <label for="email" class="col-sm-4 col-form-label">Email</label>
         <div class="col-sm-7">
         <input type="text" class="form-control" id="email" name="email">
         </div>

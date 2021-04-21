@@ -56,7 +56,7 @@
   <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning sticky-md-top">
     <div class="container">
-        <a class="navbar-brand fs-3" href="#">InstaApp</a>
+        <a class="navbar-brand fs-3" href="index.php">InstaApp</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -101,7 +101,7 @@
             $temp_id = intval($_SESSION['id']);
             $id_postingan=intval($row['id_postingan']);
             $temp_status = status_like($row['id_postingan'],$temp_id,$dbc);
-            echo "<div class='border border-dark my-3'>";
+            echo "<div class='border border-dark my-3 bg-light'>";
             echo "<div class='my-2 fs-4'><b> {$row['username']}</b></div>";
             echo "<img src='{$row['gambar']}' style='width: 250px;'><br>";
             echo "<p>  {$row['postingan']}</p>";
@@ -160,7 +160,8 @@
     ?>
     </div>
     <footer class="container-fluid text-center text-secondary p-2">
-        <p>Footer Text</p>
+        <p> ©InstaApp</p>
+        <p> Asfani Rahmatullah | 2021</p>
     </footer>  
 
     <!-- Optional JavaScript; choose one of the two! -->

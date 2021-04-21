@@ -13,7 +13,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning sticky-md-top">
     <div class="container">
-        <a class="navbar-brand fs-3" href="#">InstaApp</a>
+        <a class="navbar-brand fs-3" href="index.php">InstaApp</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -170,10 +170,9 @@
         ';
     }
     ?>
-    <div>
-    <span>Kebijakan Privasi</span>
-    </div>
-
+    <footer class="container-fluid text-center text-secondary p-2">
+        <p>InstaApp</p>
+    </footer>  
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
