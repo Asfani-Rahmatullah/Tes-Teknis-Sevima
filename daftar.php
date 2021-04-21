@@ -34,8 +34,8 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="#">Email</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><a class="dropdown-item" href="#">Instagram</a></li>
+                <li><a class="dropdown-item" href="#">Twitter</a></li>
             </ul>
             </li>
         </ul>
